@@ -1,18 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PlatformService.Models
+namespace PlatformService.Dtos
 {
-    public class PlatForm{
-        [Key]
+    public class PlatfomCreateDto
+    {
+
         [Required]
-        public int Id { get; set; }
-        
-        [Required]
-        public string Name { get; set;}
-        
+        public string Name { get; set; }
+
         [Required]
         public string Cost { get; set; }
-        
+
         [Required]
         public string Publisher { get; set; }
     }

@@ -11,8 +11,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using PlatformService.Data;
 
-namespace FlatformService
+
+namespace PlatformService
 {
     public class Startup
     {
@@ -26,11 +30,14 @@ namespace FlatformService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
+            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddScoped<IPlatformRepo, PlatformRepos>();
             services.AddControllers();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FlatformService", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "PlatformService", Version = "v1" });
             });
         }
 
@@ -41,7 +48,7 @@ namespace FlatformService
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FlatformService v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PlatformService v1"));
             }
 
             app.UseHttpsRedirection();
@@ -54,6 +61,8 @@ namespace FlatformService
             {
                 endpoints.MapControllers();
             });
+
+            PrepDb.Prepopulation(app);
         }
     }
 }
