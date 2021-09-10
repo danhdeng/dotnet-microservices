@@ -44,3 +44,10 @@ kubectl describe pod {pod id}
 # upload the docker image to docker hub
 
 docker push {image name}
+
+# trust the self signed certifcate
+
+dotnet dev-certs https --trust
+
+https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide
+

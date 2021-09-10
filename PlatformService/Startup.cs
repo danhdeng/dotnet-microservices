@@ -14,7 +14,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using PlatformService.Data;
-
+using PlatformService.SyncDataServices.Http;
 
 namespace PlatformService
 {
@@ -33,6 +33,7 @@ namespace PlatformService
             services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddScoped<IPlatformRepo, PlatformRepos>();
+            services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
