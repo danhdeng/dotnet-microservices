@@ -26,4 +26,5 @@ docker stop container_id
  # kubernetes content switch from aks to local docker-desktop
 
 kubectl config get-contexts
+
 kubectl config use-context docker-for-desktop
