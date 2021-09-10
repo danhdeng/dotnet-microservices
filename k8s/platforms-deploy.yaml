@@ -3,15 +3,15 @@ kind: Deployment
 metadata:
   name: platform-depl
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: platformservice
-    template:
-      metadata:
-        labels:
-          app: platformservice
-      spec:
-        containers:
-          - name: platformservice
-            image: danhuideng/platformservice
+  template:
+    metadata:
+      labels:
+        app: platformservice
+    spec:
+      containers:
+        - name: platformservice
+          image: danhuideng/platformservice

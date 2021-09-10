@@ -28,3 +28,19 @@ docker stop container_id
 kubectl config get-contexts
 
 kubectl config use-context docker-for-desktop
+
+# to deploy the image to kubernetes
+
+kubectl apply -f platforms-deploy.yaml
+
+# to list all the deployments in the kubernetes
+
+kubectl get deployment
+
+# to check the pods log
+
+kubectl describe pod {pod id}
+
+# upload the docker image to docker hub
+
+docker push {image name}
