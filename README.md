@@ -51,3 +51,6 @@ dotnet dev-certs https --trust
 
 https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certificates-guide
 
+# restart the deployment
+bubectl rollout restart deployment {deployment name}
+
