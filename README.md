@@ -54,3 +54,28 @@ https://docs.microsoft.com/en-us/dotnet/core/additional-tools/self-signed-certif
 # restart the deployment
 bubectl rollout restart deployment {deployment name}
 
+# Ingress nginx
+
+https://kubernetes.github.io/ingress-nginx/deploy/
+
+# ingress nginx for docker desktop
+
+https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop
+
+# ingress nginx for docker desktop deployment
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.
+
+# get all kubernetes namespace
+
+kubectl get namespace
+
+# get all pods running for ingress-nginx
+
+ kubectl get pods --namespace=ingress-nginx
+
+# get all services under namespace ingress-nginx
+
+kubectl get services --namespace=ingress-nginx
+
+
