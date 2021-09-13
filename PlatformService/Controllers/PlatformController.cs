@@ -10,15 +10,15 @@ using PlatformService.SyncDataServices.Http;
 
 namespace PlatformService.Controllers
 {
-    [Route("api/{controller}")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class PlatformController : ControllerBase
+    public class PlatformsController : ControllerBase
     {
         private readonly IPlatformRepo _repository;
         private readonly IMapper _mapper;
         public ICommandDataClient _commandDataClient { get; }
 
-        public PlatformController(IPlatformRepo repository, IMapper mapper, ICommandDataClient commandDataClient)
+        public PlatformsController(IPlatformRepo repository, IMapper mapper, ICommandDataClient commandDataClient)
         {
             _repository = repository;
             _mapper = mapper;

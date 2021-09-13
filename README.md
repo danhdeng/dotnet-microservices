@@ -64,7 +64,7 @@ https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop
 
 # ingress nginx for docker desktop deployment
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml
 
 # get all kubernetes namespace
 
@@ -77,5 +77,12 @@ kubectl get namespace
 # get all services under namespace ingress-nginx
 
 kubectl get services --namespace=ingress-nginx
+# get persistent volume claim
+
+kubectl get pvc
+
+# create secrete for mssql database access with name mssql and key P@55w0rd
+
+kubectl create secret generic mssql --from-literal=SA_PASSWORD=P@55w0rd
 
 
