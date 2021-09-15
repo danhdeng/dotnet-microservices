@@ -85,4 +85,14 @@ kubectl get pvc
 
 kubectl create secret generic mssql --from-literal=SA_PASSWORD=P@55w0rd
 
+# use docker port-forward to check the mssql connection
+
+kubectl port-forward {mssql pod name} 15789:1433
+
+# use mssql-cli to connect to mssql server in container
+
+ mssql-cli -S 127.0.0.1,15789 -U sa
+
+
+
 
