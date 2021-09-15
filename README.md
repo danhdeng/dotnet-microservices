@@ -93,6 +93,14 @@ kubectl port-forward {mssql pod name} 15789:1433
 
  mssql-cli -S 127.0.0.1,15789 -U sa
 
+ # install .netc-core entityframe core cli
+
+ dotnet tool install --global dotnet-ef
+
+ # create the initial migrations
+ 
+ dotnet ef migrations add initialmigration
+
 
 
 
