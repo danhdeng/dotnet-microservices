@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
       - name: sqlserver
-        image: mcr.microsoft.com/mssql/server:2019-RC1-ubuntu
+        image: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
         ports:
         - containerPort: 1433
         env:
         - name: SA_PASSWORD
-          value: "Testing1122"
+          value: "P@ssw0rd"
         - name: ACCEPT_EULA
           value: "Y"
 ---
