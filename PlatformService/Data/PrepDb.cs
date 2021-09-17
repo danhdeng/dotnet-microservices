@@ -30,13 +30,13 @@ namespace PlatformService.Data
                     Console.WriteLine($"-----> Cannot migrate the database with error: {ex.Message}");
                 }
             }
-            if (!context.PlatForms.Any())
+            if (!context.Platforms.Any())
             {
                 Console.WriteLine("---> starting to add data!");
-                context.PlatForms.AddRange(
-                    new Models.PlatForm() { Name = "dotnet", Publisher = "Microsoft", Cost = "free" },
-                    new Models.PlatForm() { Name = "SQL Server Express", Publisher = "Microsoft", Cost = "free" },
-                    new Models.PlatForm() { Name = "Kubernetes", Publisher = "Cloud Native Computer Foundation", Cost = "free" }
+                context.Platforms.AddRange(
+                    new Models.Platform() { Name = "dotnet", Publisher = "Microsoft", Cost = "free" },
+                    new Models.Platform() { Name = "SQL Server Express", Publisher = "Microsoft", Cost = "free" },
+                    new Models.Platform() { Name = "Kubernetes", Publisher = "Cloud Native Computer Foundation", Cost = "free" }
 
                 );
                 context.SaveChanges();

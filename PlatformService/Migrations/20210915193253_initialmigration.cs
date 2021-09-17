@@ -7,7 +7,7 @@ namespace PlatformService.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "PlatForms",
+                name: "Platforms",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -18,14 +18,14 @@ namespace PlatformService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlatForms", x => x.Id);
+                    table.PrimaryKey("PK_Platforms", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PlatForms");
+                name: "Platforms");
         }
     }
 }

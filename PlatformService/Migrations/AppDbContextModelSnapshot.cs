@@ -18,7 +18,7 @@ namespace PlatformService.Migrations
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("PlatformService.Models.PlatForm", b =>
+            modelBuilder.Entity("PlatformService.Models.Platform", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -39,7 +39,7 @@ namespace PlatformService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PlatForms");
+                    b.ToTable("Platforms");
                 });
 #pragma warning restore 612, 618
         }

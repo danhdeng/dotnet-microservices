@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using PlatformService.Data;
 using PlatformService.SyncDataServices.Http;
+using PlatformService.AsyncDataServices;
 
 namespace PlatformService
 {
@@ -35,6 +36,7 @@ namespace PlatformService
                 Console.WriteLine("---> using InMen DB");
                 services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
             }
+            services.AddSingleton<IMessageBusClient, MesssageBusClient>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddScoped<IPlatformRepo, PlatformRepos>();
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();

@@ -101,6 +101,10 @@ kubectl port-forward {mssql pod name} 15789:1433
  
  dotnet ef migrations add initialmigration
 
+ # add rabbitmq client to platform service project
+
+ dotnet add package RabbitMQ.Client --version 6.2.2
+
 
 
 

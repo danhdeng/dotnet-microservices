@@ -17,17 +17,17 @@ namespace PlatformService.Data
             return _context.SaveChanges() >= 0;
         }
 
-        public IEnumerable<PlatForm> GetAllPlatforms()
+        public IEnumerable<Platform> GetAllPlatforms()
         {
-            return _context.PlatForms.ToList();
+            return _context.Platforms.ToList();
         }
 
-        public PlatForm GetPlatformById(int id)
+        public Platform GetPlatformById(int id)
         {
-            return _context.PlatForms.FirstOrDefault<PlatForm>(p => p.Id == id);
+            return _context.Platforms.FirstOrDefault<Platform>(p => p.Id == id);
         }
 
-        public void CreatePlatform(PlatForm platformObj)
+        public void CreatePlatform(Platform platformObj)
         {
             if (platformObj == null)
             {
@@ -35,7 +35,7 @@ namespace PlatformService.Data
             }
             else
             {
-                _context.PlatForms.Add(platformObj);
+                _context.Platforms.Add(platformObj);
             }
         }
     }

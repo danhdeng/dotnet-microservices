@@ -9,7 +9,7 @@ namespace PlatformService.Data
         {
 
         }
-        public DbSet<PlatForm> PlatForms { get; set; }
+        public DbSet<Platform> Platforms { get; set; }
 
     }
 
