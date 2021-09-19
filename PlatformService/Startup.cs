@@ -37,7 +37,7 @@ namespace PlatformService
             else
             {
                 Console.WriteLine("---> using InMen DB");
-                services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("My_Test_DB"));
+                services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMem"));
             }
             services.AddSingleton<IMessageBusClient, MesssageBusClient>();
             services.AddGrpc();
