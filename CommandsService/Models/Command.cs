@@ -17,6 +17,6 @@ namespace CommandsService.Models
         [Required]
         public int PlatformId { get; set; }
 
-        public Platform platform { get; set; }
+        public Platform Platform {get; set;}
     }
 }

@@ -13,7 +13,7 @@ namespace CommandsService.Controllers
     {
         private readonly ICommandRepo _repository;
 
-        public IMapper _mapper { get; }
+        private readonly IMapper _mapper;
 
         public PlatformsController(ICommandRepo repository, IMapper mapper)
         {
@@ -22,7 +22,7 @@ namespace CommandsService.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PlatformReadDto>> GetAllPlatform()
+        public ActionResult<IEnumerable<PlatformReadDto>> GetPlatforms()
         {
             Console.WriteLine("---> Getting Platform for Command Service");
             var platformItems = _repository.GetAllPlatform();

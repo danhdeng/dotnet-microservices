@@ -21,6 +21,7 @@ namespace PlatformService.AsyncDataServices
                 HostName = _configuration["RabbitMQHost"],
                 Port = int.Parse(_configuration["RabbitMQPort"])
             };
+            Console.WriteLine($"HostName: {_configuration["RabbitMQHost"]}, Port: {int.Parse(_configuration["RabbitMQPort"])}");
             try
             {
                 _connection = factory.CreateConnection();

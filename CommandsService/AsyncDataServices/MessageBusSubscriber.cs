@@ -18,38 +18,14 @@ namespace CommandsService.AsyncDataServices
         private IModel _channel;
         private string _queueName;
 
-        public MessageBusSubscriber(IConfiguration configuation, IEventProcessor eventProcessor)
+        public MessageBusSubscriber(IConfiguration configuration, IEventProcessor eventProcessor)
         {
-            _configuration = configuation;
+            _configuration = configuration;
             _eventProcessor = eventProcessor;
-            InitializingRabbitMQ();
-        }
-        protected override Task ExecuteAsync(CancellationToken stopToken)
-        {
-            stopToken.ThrowIfCancellationRequested();
-            var consumer =new EventingBasicConsumer(_channel);
-            consumer.Received +=(ModuleHandle, ea)=>
-            {
-                Console.WriteLine("---> Event Received!");
-                var body=ea.Body;
-                var notificationMessage=Encoding.UTF8.GetString(body.ToArray());
-                _eventProcessor.ProcessEvent(notificationMessage);
-            };
-            _channel.BasicConsume(queue: _queueName, autoAck: true, consumer: consumer);
-            return Task.CompletedTask;
+            InitializeRabbitMQ();
         }
 
-        public override void Dispose()
-        {
-            Console.WriteLine("MessageBus Disposing");
-            if (_channel.IsOpen)
-            {
-                _channel.Close();
-                _connection.Close();
-            }
-        }
-
-        private void InitializingRabbitMQ()
+        private void InitializeRabbitMQ()
         {
             var factory = new ConnectionFactory()
             {
@@ -74,6 +50,33 @@ namespace CommandsService.AsyncDataServices
             }
         }
 
+        protected override Task ExecuteAsync(CancellationToken stopToken)
+        {
+            stopToken.ThrowIfCancellationRequested();
+            var consumer =new EventingBasicConsumer(_channel);
+            consumer.Received +=(ModuleHandle, ea)=>
+            {
+                Console.WriteLine("---> Event Received!");
+                var body=ea.Body;
+                var notificationMessage=Encoding.UTF8.GetString(body.ToArray());
+                _eventProcessor.ProcessEvent(notificationMessage);
+            };
+            _channel.BasicConsume(queue: _queueName, autoAck: true, consumer: consumer);
+            return Task.CompletedTask;
+        }
+
+        public override void Dispose()
+        {
+            Console.WriteLine("MessageBus Disposing");
+            if (_channel.IsOpen)
+            {
+                _channel.Close();
+                _connection.Close();
+            }
+			base.Dispose();
+        }
+
+        
         private void RabbitMQ_ConnectionShutdown(object sender, ShutdownEventArgs e)
         {
             Console.WriteLine($"---> RabbitMQ connection shutdown");

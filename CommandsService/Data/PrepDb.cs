@@ -1,21 +1,23 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using CommandsService.Models;
+// using CommandsService.SyncDataServices.Grpc;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CommandsService.Data
 {
     public static class PrepDb
     {
-        public static void Prepopulation(IApplicationBuilder app)
+        public static void PrepPopulation(IApplicationBuilder applicationBuilder)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
+            using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
-                // var grpcClient=serviceScope.ServiceProvider.GetService
-                SeedData(serviceScope.ServiceProvider.GetService<ICommandRepo>(), null);
+                // var grpcClient = serviceScope.ServiceProvider.GetService<IPlatformDataClient>();
+
+                // var platforms = grpcClient.ReturnAllPlatforms();
+
+                // SeedData(serviceScope.ServiceProvider.GetService<ICommandRepo>(), platforms);
             }
         }
 

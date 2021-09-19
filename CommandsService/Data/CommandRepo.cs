@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommandsService.Models;
@@ -10,6 +11,7 @@ namespace CommandsService.Data
         public CommandRepo(AppDbContext context)
         {
             _context = context;
+            Console.WriteLine($"the db name is {_context.ContextId}");
         }
         public bool SaveChanges()
         {
@@ -35,7 +37,7 @@ namespace CommandsService.Data
 
         public bool PlatformExists(int platformId)
         {
-            return _context.Platforms.Any<Platform>(p => p.Id == platformId);
+            return _context.Platforms.Any(p => p.Id == platformId);
         }
 
         public bool ExternalPlatformExists(int externalPlatformId)
@@ -46,7 +48,7 @@ namespace CommandsService.Data
         //Commands
         public IEnumerable<Command> GetCommandsForPlatform(int platformId)
         {
-            return _context.Commands.Where(c => c.PlatformId == platformId).OrderBy(c => c.platform.Name);
+            return _context.Commands.Where(c => c.PlatformId == platformId).OrderBy(c => c.Platform.Name);
         }
         public Command GetCommand(int platformId, int commandId)
         {

@@ -1,16 +1,19 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using PlatformService.Models;
 
 namespace PlatformService.Data
 {
-    public class PlatformRepos : IPlatformRepo
+    public class PlatformRepo : IPlatformRepo
     {
         private readonly AppDbContext _context;
 
-        public PlatformRepos(AppDbContext context)
+        public PlatformRepo(AppDbContext context)
         {
             _context = context;
+            Console.WriteLine($"the db name is {_context.ContextId}");
+
         }
         public bool SaveChanges()
         {

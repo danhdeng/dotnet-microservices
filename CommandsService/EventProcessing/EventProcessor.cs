@@ -47,6 +47,7 @@ namespace CommandsService.EventProcessing
 
         private void AddPlatform(string publishPlatformMessage)
         {
+            Console.WriteLine($"publishPlatformMessage: {publishPlatformMessage}");
             using (var _scope = _scopeFactory.CreateScope())
             {
                 var repo = _scope.ServiceProvider.GetRequiredService<ICommandRepo>();
@@ -54,7 +55,7 @@ namespace CommandsService.EventProcessing
                 try
                 {
                     var platformObj = _mapper.Map<Platform>(platformPublishDto);
-                    if(!repo.ExternalPlatformExists(platformObj.Id))
+                    if(!repo.ExternalPlatformExists(platformObj.ExternalID))
                     {
                         repo.CreatePlatform(platformObj);
                         repo.SaveChanges();

@@ -33,10 +33,10 @@ namespace CommandsService.Controllers
             return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(commands));
         }
 
-         [HttpGet("{commandId}", Name="GetCommandsForPlatform")]
-        public ActionResult<IEnumerable<CommandReadDto>> GetCommandsForPlatform(int platformId, int commandId)
+        [HttpGet("{commandId}", Name = "GetCommandForPlatform")]
+        public ActionResult<CommandReadDto> GetCommandForPlatform(int platformId, int commandId)
         {
-            Console.WriteLine($"---> GetCommandsForPlatform {platformId} / {commandId}");
+            Console.WriteLine($"---> GetCommandForPlatform {platformId} / {commandId}");
             if(!_repository.PlatformExists(platformId))
             {   
                 return NotFound();
@@ -45,7 +45,8 @@ namespace CommandsService.Controllers
             if(command == null){
                 return NotFound();
             }
-            return Ok(_mapper.Map<IEnumerable<CommandReadDto>>(command));
+
+            return Ok(_mapper.Map<CommandReadDto>(command));
         }
 
         [HttpPost]
@@ -61,7 +62,7 @@ namespace CommandsService.Controllers
             _repository.SaveChanges();
 
             var commandReadDto=_mapper.Map<CommandReadDto>(command);
-            return CreatedAtRoute(nameof(GetCommandsForPlatform), new {platformId=platformId, commandId=commandReadDto.Id}, commandReadDto);
+            return CreatedAtRoute(nameof(GetCommandForPlatform), new {platformId=platformId, commandId=commandReadDto.Id}, commandReadDto);
         }
     }
 }
