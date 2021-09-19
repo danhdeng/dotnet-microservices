@@ -11,6 +11,19 @@
 
  dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 
+# for platform service project
+
+ dotnet add package Grpc.AspNetCore 
+
+# for command service project
+ 
+ dotnet add package Grpc.tools
+
+dotnet add package Grpc.Net.Client
+
+dotnet add package Google.Protobuf
+ 
+
   # create a docker image 
  docker build -t danhuideng/platformservice
 

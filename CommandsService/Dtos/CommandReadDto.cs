@@ -1,4 +1,3 @@
-using CommandsService.Models;
 
 namespace CommandsService.Dtos
 {
@@ -12,6 +11,5 @@ namespace CommandsService.Dtos
 
         public int PlatformId { get; set; }
 
-        public Platform platform { get; set; }
     }
 }

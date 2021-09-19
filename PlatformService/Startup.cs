@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using PlatformService.Data;
 using PlatformService.SyncDataServices.Http;
 using PlatformService.AsyncDataServices;
+using PlatformService.SyncDataServices.Grpc;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace PlatformService
 {
@@ -37,7 +40,8 @@ namespace PlatformService
                 services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("My_Test_DB"));
             }
             services.AddSingleton<IMessageBusClient, MesssageBusClient>();
-            services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddGrpc();
+            // services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddScoped<IPlatformRepo, PlatformRepo>();
             services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
             services.AddControllers();
@@ -67,6 +71,10 @@ namespace PlatformService
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGrpcService<GrpcPlatformService>();
+                endpoints.MapGet("/protos/platforms.proto", async context =>{
+                    await context.Response.WriteAsync(File.ReadAllText("Protos/platforms.proto"));
+                });
             });
 
             PrepDb.Prepopulation(app, env.IsProduction());
